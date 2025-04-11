@@ -1,0 +1,40 @@
+<section class="bg-gray-50 rounded-border shadow p-4 w-[75%] mx-auto">
+    <div class="flex justify-between items-center mb-2">
+        <h1 class=" text-center md:text-3xl text-green-600">shop cart</h1>
+        <button class="bg-red-800 px-3 py-1  border rounded text-white md:text-lg" (click)="claerCart()" >clear cart</button>
+
+    </div>
+    <div class="flex items-center justify-start">
+        <span class="text-green-600 md:text-3xl mb-12" >total  price {{cartDetails.totalCartPrice }}</span>
+    </div>
+    @for (product of cartDetails.products; track product.product.id) {
+        <div
+        class="grid grid-cols-6 md:grid-cols-[10%_minmax(0,1fr)] border-b mb-2">
+        <div class="mx-auto col-start-1 col-end-6 md:col-start-1 md:col-end-2">
+            <img [src]="product.product.imageCover" class="w-full h-[120px] md:h-[150px]" [alt]="product.product.title">
+        </div>
+    <div class="flex justify-between  items-center col-start-1 col-end-6 md:col-start-2 md:col-end-6">
+        <div class="px-6">
+            <h3>{{product.product.title}}</h3>
+            <h4>
+                price:{{product.price }}
+            </h4>
+            <button (click)="removeItem(product.product.id)">
+                
+                <i class="fas fa-trash-can text-green-600"></i> Remove
+             
+            </button>
+            </div>
+            <div class="flex  flex-col justify-between md:justify-start md:flex-row md:items-center md:gap-4">
+            <button (click)="updateCount(product.product.id,product.count + 1)" class="text-3xl text-green-600"> <i class="fa-regular fa-square-plus"></i></button>
+            <span>{{product.count}}</span>
+            <button (click)="updateCount(product.product.id,product.count - 1)" class="text-3xl text-green-600"> <i class="fa-regular fa-square-minus"></i></button>
+            </div>
+    </div>
+        </div>
+    }
+    <div class="flex justify-center">
+        <button class="bg-green-600 py-2 px-6 rounded border text-white" [routerLink]="['/checkout',cartDetails._id]" >Check Out</button>
+
+    </div>
+</section>

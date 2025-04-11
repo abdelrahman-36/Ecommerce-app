@@ -1,0 +1,28 @@
+<section>
+    <h1 class="text-center text-3xl text-green-600 mb-10">All Brands</h1>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3  gap-10">
+  @for (brand of brandsData; track brand._id) {
+
+    <div
+  
+      class="w-full border rounded max-w-sm bg-white border border-gray-200 rounded-lg mx-auto  dark:bg-gray-800 dark:border-gray-700 hover:shadow-lg shadow-green-200"
+    >
+   
+        <img
+        class="w-full rounded-t-lg "
+        [src]="brand.image"
+        [alt]="brand.slug"
+      />
+     
+      <div class="flex justify-center items-center text-lg p-3 ">
+        <h2 class="text-gray-600">{{ brand.name }}</h2>
+      </div>
+    </div>
+ 
+  }
+
+</div>
+
+
+
+</section>
