@@ -21,7 +21,7 @@ export class CheckoutComponent implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly ordersService = inject(OrdersService);
   private readonly cartService = inject(CartService);
-  cartId: string = '';
+  cartId: any = '';
   checkOutForm!: FormGroup;
   ngOnInit(): void {
     this.inItForm();
@@ -40,7 +40,9 @@ export class CheckoutComponent implements OnInit {
   getCartId(): void {
     this.activatedRoute.paramMap.subscribe({
       next: (param) => {
-        this.cartId = param.get('id')!;
+        this.cartId = param.get('id');
+       console.log( this.cartId);
+       
       },
     });
   }
@@ -58,16 +60,5 @@ export class CheckoutComponent implements OnInit {
         },
       });
   }
-  submitCashPayMent(): void {
-    this.ordersService
-      .checkOutCashOrder(this.cartId, this.checkOutForm.value)
-      .subscribe({
-        next: (res) => {
-          this.cartService.cartnumber.next(0);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
-  }
+
 }
