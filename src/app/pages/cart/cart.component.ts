@@ -10,8 +10,11 @@ import { RouterLink } from '@angular/router';
   styleUrl: './cart.component.scss',
 })
 export class CartComponent implements OnInit {
+  
   private readonly cartService = inject(CartService);
   cartDetails: Icart = {} as Icart;
+  
+
 
   ngOnInit(): void {
     this.getCartData();
@@ -20,6 +23,7 @@ export class CartComponent implements OnInit {
     this.cartService.GetLoggedUserCart().subscribe({
       next: (res) => {
         this.cartDetails = res.data;
+        localStorage.setItem('cartId',res.data._id);
       },
       error: (err) => {
         console.log(err);

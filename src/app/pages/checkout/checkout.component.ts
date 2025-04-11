@@ -18,14 +18,14 @@ import { CartService } from '../../core/services/cart/cart.service';
 })
 export class CheckoutComponent implements OnInit {
   private readonly formBuilder = inject(FormBuilder);
-  private readonly activatedRoute = inject(ActivatedRoute);
+
   private readonly ordersService = inject(OrdersService);
   private readonly cartService = inject(CartService);
-  cartId: any = '';
+  cartId:string=localStorage.getItem('cartId')!;
   checkOutForm!: FormGroup;
   ngOnInit(): void {
     this.inItForm();
-    this.getCartId();
+  
   }
   inItForm(): void {
     this.checkOutForm = this.formBuilder.group({
@@ -37,15 +37,7 @@ export class CheckoutComponent implements OnInit {
       city: [null, [Validators.required]],
     });
   }
-  getCartId(): void {
-    this.activatedRoute.paramMap.subscribe({
-      next: (param) => {
-        this.cartId = param.get('id');
-       console.log( this.cartId);
-       
-      },
-    });
-  }
+ 
   submitOnlinePayMent(): void {
     this.ordersService
       .checkOutPayMent(this.cartId, this.checkOutForm.value)

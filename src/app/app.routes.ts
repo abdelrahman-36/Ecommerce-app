@@ -89,7 +89,7 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'checkout/:id',
+        path: 'checkout',
         title: 'checkout',
         loadComponent: () =>
           import('./pages/checkout/checkout.component').then(
