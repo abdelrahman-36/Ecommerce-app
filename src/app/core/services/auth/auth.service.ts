@@ -31,6 +31,8 @@ export class AuthService {
   }
   logout(){
     localStorage.removeItem('userToken');
+    localStorage.removeItem('cartId');
+
     this.userData=null;
     this._Router.navigate(['/login']);
   }
