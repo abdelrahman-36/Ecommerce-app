@@ -102,7 +102,9 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/details/details.component').then(
             (m) => m.DetailsComponent
-          ),
+          ), data: {
+            prerender: true
+          },
       },
       {
         path: '**',

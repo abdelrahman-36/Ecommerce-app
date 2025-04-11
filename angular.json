@@ -89,7 +89,7 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "tsconfig.spec.json",
+            "tsConfig": "tsconfig.spec.json",     
             "inlineStyleLanguage": "scss",
             "assets": [
               {
